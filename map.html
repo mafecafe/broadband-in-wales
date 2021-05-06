@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+    <title>Broadspeed in Wales</title>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+    <!--Add the Geocoder API to include the searchbar on the map-->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css" />
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+    // Access token
+    mapboxgl.accessToken = "pk.eyJ1IjoibWFmZWNhZmUiLCJhIjoiY2pvNTU0ZG8yMDY1dzNrbWJleWVjeG5yNSJ9.9kpMJzuFyHn7cIQ8pNOHzQ";
+    
+    // The map
+    var map = new mapboxgl.Map({
+        container: "map", // container id
+        style: "mapbox://styles/mapbox/dark-v10", // stylesheet location
+        center: [-3.5400585794858017, 52.45045504465645], // coordinates expressed in Decimal Degress [lat, long] reverse
+        zoom: 6.5 // starting zoom, mid-Wales
+    });
+
+    map.on("load", function() {
+
+        // Keep labels as top layer
+        // Source: https://docs.mapbox.com/mapbox-gl-js/example/geojson-layer-in-stack/
+        // Accessed: 06/04/2020
+        var layers = map.getStyle().layers;
+        // Find the index of the first symbol layer in the map style
+        //Labels are symbols
+        var firstSymbolId;
+        for (var i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol') {
+                firstSymbolId = layers[i].id;
+                break;
+            };
+        };
+        
+        // Tileset simplified dataset of Wales
+        // Source: https://docs.mapbox.com/mapbox-gl-js/example/toggle-layers/
+        // Accessed: 06/04/2020
+        map.addSource("broadbandWales", {
+            type: "vector",
+            url: "mapbox://mafecafe.bwehql9r"
+        });
+
+        // Data driven circles layer
+        map.addLayer({
+                id: "boradband-speed",
+                type: "circle",
+                source: "broadbandWales",
+                "source-layer": "simplified_broadband_performa-c4hol7", //dataset
+                paint: {
+                    // Circles with different data-driven sizes
+                    //  "circle-radius": [
+                    //     "interpolate", ["linear"], ["zoom"], // the circles will resize according to the specified zoom stops
+                    //     3, ["/", ["number", ["get", "Average download speed (Mbit/s)"]], 200],
+                    //     6.5, ["/", ["number", ["get", "Average download speed (Mbit/s)"]], 40], //at 6.5 zoom, the radius will be divided by 40 (smaller, better for small scales)
+                    //     13, ["/", ["number", ["get", "Average download speed (Mbit/s)"]], 25],
+                    //     18, ["/", ["number", ["get", "Average download speed (Mbit/s)"]], 15] //at zoom 30, the radius will be divided by 10 (larger, better for large scales)
+                    //  ],
+
+                    // Uniform radius, changes on zoom
+                    "circle-radius":{
+                        "base": 0.35,
+                        "stops": [
+                            [6, 0.65],
+                            [10, 2.5],
+                            [14, 4],
+                            [18, 24],
+                            [22, 48]
+                        ]
+                    },
+                    "circle-opacity": 0.8, //80% opacity
+                    "circle-color": [
+                        // Color scale based on the boradbad speed data
+                        // Source: https://stackoverflow.com/questions/55796506/syntax-to-set-the-color-of-a-circle-using-data
+                        // Accessed: 05/04/2020
+                        "case",
+                            // Between 0-9 mbit/s -- not decent
+                            ["<", ["get", "Average download speed (Mbit/s)"], 10], "#287d8e",
+                            // Between 10-29 mbit/s -- Superfast lower tier
+                            //["<", ["get", "Average download speed (Mbit/s)"], 30], "#1f968b",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 10], ['<', ["get", "Average download speed (Mbit/s)"], 30]], "#1f968b",
+                            // Between 30-99 mbit/s -- Superfast mid tier
+                            //["<", ["get", "Average download speed (Mbit/s)"], 100], "#55c667",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 30], ['<', ["get", "Average download speed (Mbit/s)"], 100]], "#55c667",
+                            // Between 100-299 mbit/s -- Superfast upper tier
+                            //["<", ["get", "Average download speed (Mbit/s)"], 300], "#95d840,
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 100], ['<', ["get", "Average download speed (Mbit/s)"], 300]], "#95d840",
+                            // Over 300 mbit/s -- Ultrafast
+                            //[">", ["get", "Average download speed (Mbit/s)"], 299], "#b8de29",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 300]], "#dce319",
+                            // Default
+                            "#ccc" 
+                    ]
+                }
+            }, 
+            firstSymbolId,
+        );
+    });
+
+    // Add the search bar to find the postcodes
+    var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: false, // Overwrite the default style
+    placeholder: 'Search for your postcode', // Search bar placeholder
+    
+    // Limit the search to an area -- this would prevent searches outside Wales 
+    // bbox: [-5.502172414842955, 51.2926782947639, -4.502120140378313, 53.596926849176654], // Boundary for Wales
+    // proximity: {
+    //     longitude: -3.5400585794858017,
+    //     latitude: 52.45045504465645
+    // } // Same as center position of map
+
+    });
+
+    // Add the geocoder to the map
+    map.addControl(geocoder);
+
+    </script>
+    
+</body>
+</html>
