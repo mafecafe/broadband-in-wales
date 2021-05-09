@@ -7,25 +7,20 @@
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
     <title>Broadspeed in Wales</title>
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet" />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-      }
-    </style>
+    <!--Styles-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <!--Add the Geocoder API to include the searchbar on the map-->
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css" />
 </head>
 <body>
+    <!--Markup elements for the map-->
     <div id="map"></div>
+    <div class='map-overlay' id='legend'>
+        <h3>Broadband speed in Mbit/s</h3>
+    </div>
 
     <script>
     // Access token
@@ -35,9 +30,30 @@
     var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/dark-v10", // stylesheet location
-        center: [-3.5400585794858017, 52.45045504465645], // coordinates expressed in Decimal Degress [lat, long] reverse
+        center: [-4.5873993773374595, 52.41629923897779], // coordinates expressed in Decimal Degress [lat, long] reverse, set to the Irish Sea to center map
         zoom: 6.5 // starting zoom, mid-Wales
     });
+
+    // Add the search bar to find the postcodes
+    var geocoder = new MapboxGeocoder({ // Initialize the geocoder
+    accessToken: mapboxgl.accessToken, // Set the access token
+    mapboxgl: mapboxgl, // Set the mapbox-gl instance
+    marker: false, // Overwrite the default style
+    placeholder: 'Search for your postcode', // Search bar placeholder
+    
+    // Limit the search to an area -- this would prevent searches outside Wales 
+    // bbox: [-5.502172414842955, 51.2926782947639, -4.502120140378313, 53.596926849176654], // Boundary for Wales
+    // proximity: {
+    //     longitude: -3.5400585794858017,
+    //     latitude: 52.45045504465645
+    // } // Same as center position of map
+
+    });
+    map.addControl(geocoder);
+
+    // Add zoom and rotation controls to the map
+    // Source: https://docs.mapbox.com/mapbox-gl-js/example/navigation/
+    map.addControl(new mapboxgl.NavigationControl());
 
     map.on("load", function() {
 
@@ -54,6 +70,12 @@
                 break;
             };
         };
+
+       // Alternative for centering the map
+    //    map.fitBounds([
+    //        [-6.2461429537337905, 51.22659844375781], // north Atlantic Ocean
+    //        [-2.24407095996372, 53.4823798254149] // Manchester
+    //     ]);
         
         // Tileset simplified dataset of Wales
         // Source: https://docs.mapbox.com/mapbox-gl-js/example/toggle-layers/
@@ -117,27 +139,28 @@
             }, 
             firstSymbolId,
         );
+
+        // Add the legend
+        // Source: https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/
+        var layers = ["Less than 10", "10 to 29", "30 to 99", "100 to 299", "More than 300"];
+        var colors = ["#287d8e", "#1f968b", "#95d840",  "#95d840", "#dce319"];
+
+        for (i = 0; i < layers.length; i++) {
+            var layer = layers[i];
+            var color = colors[i];
+            var item = document.createElement("div");
+            var key = document.createElement("span");
+            key.className = "legend-key";
+            key.style.backgroundColor = color;
+
+            var value = document.createElement("span");
+            value.innerHTML = layer;
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
+        };
+
     });
-
-    // Add the search bar to find the postcodes
-    var geocoder = new MapboxGeocoder({ // Initialize the geocoder
-    accessToken: mapboxgl.accessToken, // Set the access token
-    mapboxgl: mapboxgl, // Set the mapbox-gl instance
-    marker: false, // Overwrite the default style
-    placeholder: 'Search for your postcode', // Search bar placeholder
-    
-    // Limit the search to an area -- this would prevent searches outside Wales 
-    // bbox: [-5.502172414842955, 51.2926782947639, -4.502120140378313, 53.596926849176654], // Boundary for Wales
-    // proximity: {
-    //     longitude: -3.5400585794858017,
-    //     latitude: 52.45045504465645
-    // } // Same as center position of map
-
-    });
-
-    // Add the geocoder to the map
-    map.addControl(geocoder);
-
     </script>
     
 </body>

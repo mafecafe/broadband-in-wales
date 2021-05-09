@@ -15,12 +15,14 @@
   }
   
 body {
-    font-family: "Cabin", sans-serif;
+    font-family: "Roboto", sans-serif;
     color: var(--light);
+    font-size: 0.9rem;
+    line-height: 1.2rem;
   }
 
 main {
-    margin: 0 20vw 0 20vw;
+    margin: 0 15vw 0 15vw;
 }
 
 header {
@@ -63,7 +65,7 @@ header {
     width: 100%;
     text-align: center;
     z-index: 5;
-    font-family: "Cabin", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
     line-height: 1.5rem;
     font-size: 1rem;
@@ -90,6 +92,39 @@ h2.section-title {
 }
 
 .source {
+    text-decoration: none;
+    color: var(--light);
     font-size: 0.8rem;
     font-weight: 400;
+}
+
+/*-----------SECTION 2: ARTICLES-----------*/
+
+.art-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    height: 60vh;
+}
+
+.article-1 {
+    flex: 1;
+    border: 2px solid yellow;
+}
+
+.article-2 {
+    flex: 1;
+    border: 2px solid red; 
+}
+
+.article-3 {
+    flex: 1;
+    border: 2px solid yellowgreen;
+}
+
+.article-4 {
+    flex: 1;
+    border: 2px solid purple;
 }
