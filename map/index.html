@@ -23,7 +23,18 @@
     <!--Markup elements for the map-->
     <div id="map"></div>
     <div class='map-overlay' id='legend'>
-        <h3>Broadband speed in Mbit/s</h3>
+        <h2>How fast is your internet connection?</h2>
+        <p>According to OFCOM data, the <strong>average internet speed in Wales is 55.7 Mbit/s</strong>, which is classified as superfast broadband.</p>
+        <p>However, <strong>64% of postcodes connected to broadband perform below average</strong>.</p>
+        <p>Use the search bar to find out how fast your internet connection is.</p>
+        <h3>Speed in megabits per second (Mbit/s)</h3>
+    </div>
+
+    <div class='map-overlay' id= 'legend-note'>
+        <p><strong>Note:</strong><br> 
+            Actual broadband performance can vary depending on different factors. This map uses data collected in 2020 and may not be up to date with current speeds. 
+        </p>
+
     </div>
 
     <script>
@@ -34,24 +45,23 @@
     var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/dark-v10", // stylesheet location
-        center: [-4.5873993773374595, 52.41629923897779], // coordinates expressed in Decimal Degress [lat, long] reverse, set to the Irish Sea to center map
-        zoom: 6.5 // starting zoom, mid-Wales
+        center: [-3.6035373172384646, 52.406037348255545], // Llangurig [lat, long] in decimal degrees
+        zoom: 6.8 // starting zoom, mid-Wales
     });
 
-    // Add the search bar to find the postcodes
+    // Add the search bar to search specific postcodes
     var geocoder = new MapboxGeocoder({ // Initialize the geocoder
         accessToken: mapboxgl.accessToken, // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
-        marker: false, // Remove preset marker
-        placeholder: 'Search for your postcode', // Search bar placeholder
-        // Limit the search to an area -- this would prevent searches outside Wales 
-        bbox: [-6.2461429537337905, 51.22659844375781, -2.24407095996372, 53.4823798254149], 
+        marker: false, // Remove preset marker style
+        placeholder: 'Search for your postcode', 
+        // Limit the search to Wales -- PCDS outside this area are not shown 
+        bbox: [-6.2461429537337905, 51.22659844375781, -2.6819539762833444, 52.97002976724083], 
         // proximity: {
         //     longitude: -3.5400585794858017,
         //     latitude: 52.45045504465645
         // } // Same as center position of map
     });
-
     map.addControl(geocoder);
 
     // Add zoom and rotation controls to the map
@@ -145,7 +155,7 @@
 
         // Add the legend
         // Source: https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/
-        var layers = ["Less than 10", "10 to 29", "30 to 99", "100 to 299", "More than 300"];
+        var layers = ["Less than 10 - Not decent", "10 to 29 | Decent", "30 to 99 (superfast)", "100 to 299 (Superfast)", "More than 300 / Ultrafast"];
         var colors = ["#287d8e", "#1f968b", "#55c667",  "#95d840", "#dce319"];
 
         for (i = 0; i < layers.length; i++) {
