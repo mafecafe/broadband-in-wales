@@ -49,7 +49,7 @@
         zoom: 6.8 // starting zoom, mid-Wales
     });
 
-    // Add the search bar to search specific postcodes
+    // Add geocoder to retrieve the data
     var geocoder = new MapboxGeocoder({ // Initialize the geocoder
         accessToken: mapboxgl.accessToken, // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
@@ -62,7 +62,25 @@
         //     latitude: 52.45045504465645
         // } // Same as center position of map
     });
-    map.addControl(geocoder);
+    map.addControl(geocoder, "top-right");
+
+    // --------------------------- THIS IS A TEST WITH MARKERS ----------------------------
+
+    // var marker = new mapboxgl.Marker({
+    //         "color": "#008000",
+    //         "marker-symbol": "point",
+    //     }) // Create a new green marker
+
+    // geocoder.on('result', function(data) { // When the geocoder returns a result
+    //     var point = data.result.center; // Capture the result coordinates
+    //     marker.setLngLat(point).addTo(map); // Add the marker to the map at the result coordinates
+
+    // });
+
+    // If the marker gets added here, I can set the marker to be a value, right?
+    // How to get the number of mbit/s as the value to display either in the circle or elsewhere
+    // ------------------------------------------------------------------------------------
+
 
     // Add zoom and rotation controls to the map
     // Source: https://docs.mapbox.com/mapbox-gl-js/example/navigation/
