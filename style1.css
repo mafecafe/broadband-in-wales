@@ -172,3 +172,8 @@ h2.section-title {
   padding-right: 14rem;
   color: var(--light);
 }
+
+/*--------Fixed Header-------*/
+.card-body{
+  color: var(--dark) !important;
+}
