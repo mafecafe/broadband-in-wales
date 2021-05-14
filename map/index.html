@@ -31,9 +31,8 @@
     </div>
 
     <!--DISCLAIMER-->
-    <!-- <div class='map-overlay' id= 'legend-note'>
-        <p><strong>Note:</strong><br> 
-            Actual broadband performance can vary depending on different factors. This map uses data collected in 2020 and may not be up to date with current speeds. 
+    <div class='map-overlay' id= 'legend-note'>
+        <p>* According to Ofcom. The UK government considers superfast anything above 24 Mpbs. 
         </p>
 
     </div> -->
@@ -46,7 +45,8 @@
     var map = new mapboxgl.Map({
         container: "map", // container id
         style: "mapbox://styles/mapbox/dark-v10", // stylesheet location
-        center: [-3.6035373172384646, 52.406037348255545], // Llangurig [lat, long] in decimal degrees
+        //center: [-3.6035373172384646, 52.406037348255545], // Llangurig [lat, long] in decimal degrees
+        center: [-4.079476011912839, 52.40909067608772], // Ceredigion
         zoom: 6.8 // starting zoom, mid-Wales
     });
 
@@ -57,7 +57,7 @@
         marker: false, // Remove preset marker style
         placeholder: 'Search for your postcode', 
         // Limit the search to Wales -- PCDS outside this area are not shown 
-        bbox: [-6.2461429537337905, 51.22659844375781, -2.6819539762833444, 52.97002976724083], 
+        bbox: [-6.2461429537337905, 51.22659844375781, -3.0746473579867093, 53.45360364492393], 
         // proximity: {
         //     longitude: -3.5400585794858017,
         //     latitude: 52.45045504465645
@@ -135,13 +135,17 @@
 
                     // Uniform radius, changes on zoom
                     "circle-radius":{
-                        "base": 0.35,
+                        "base": 0.5,
                         "stops": [
-                            [6, 0.65],
-                            [10, 2.5],
-                            [14, 4],
-                            [18, 24],
-                            [22, 48]
+                            [4, 0.5],
+                            [8, 1],
+                            [12, 2],
+                            [14, 6],
+                            [16, 20],
+                            [18, 40],
+                            [20, 80],
+                            [24, 160]
+
                         ]
                     },
                     "circle-opacity": 0.8, //80% opacity
@@ -151,22 +155,31 @@
                         // Accessed: 05/04/2020
                         "case",
                             // Between 0-9 mbit/s -- not decent
-                            ["<", ["get", "Average download speed (Mbit/s)"], 10], "#287d8e",
+                            ["<", ["get", "Average download speed (Mbit/s)"], 10], "#651c91",
                             // Between 10-29 mbit/s -- Superfast lower tier
                             //["<", ["get", "Average download speed (Mbit/s)"], 30], "#1f968b",
-                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 10], ['<', ["get", "Average download speed (Mbit/s)"], 30]], "#1f968b",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 10], ['<', ["get", "Average download speed (Mbit/s)"], 30]], "#3c64b0",
                             // Between 30-99 mbit/s -- Superfast mid tier
                             //["<", ["get", "Average download speed (Mbit/s)"], 100], "#55c667",
-                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 30], ['<', ["get", "Average download speed (Mbit/s)"], 100]], "#55c667",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 30], ['<', ["get", "Average download speed (Mbit/s)"], 100]], "#2dc28c",
                             // Between 100-299 mbit/s -- Superfast upper tier
                             //["<", ["get", "Average download speed (Mbit/s)"], 300], "#95d840,
-                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 100], ['<', ["get", "Average download speed (Mbit/s)"], 300]], "#95d840",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 100], ['<', ["get", "Average download speed (Mbit/s)"], 300]], "#9aff36",
                             // Over 300 mbit/s -- Ultrafast
                             //[">", ["get", "Average download speed (Mbit/s)"], 299], "#b8de29",
-                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 300]], "#dce319",
+                            ["all", [">=", ["get", "Average download speed (Mbit/s)"], 300]], "#f4ff2e",
                             // Default
                             "#ccc" 
                     ]
+                    // PALETTES//
+                    // My virids ["#651c91","#3c64b0", "#2dc28c", "#9aff36", "#f4ff2e"] *IN USE*
+                    // Viridis [#287d8e, #1f968b, #55c667, #95d840, #dce319]
+                    // Viridis 2 [#481567, #39568C, #29AF7F, #95D840, #FDE725]
+                    // Viridis light ["#82597B", "#6F7FA6", "#32C8B1", "#7EE490", "#DCF76D"]
+                    // Sequential 2 [#413950, #3D6078, #248A91, #7DD883, #D9F66E]
+                    // Diverging red-blue [#d7191c, #fdae61, #ffffbf, #abd9e9, #2c7bb6]
+                    // Experiment 1 brown-green [#874835, #9F6F31, #9E9E3F, #86CE73, #55FAC9]
+                    // Diverging purple - green [#7b3294, #c2a5cf, #f7f7f7, #a6dba0, #008837]
                 }
             }, 
             firstSymbolId,
@@ -174,8 +187,8 @@
 
         // Add the legend
         // Source: https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/
-        var layers = ["Less than 10 - Not decent", "10 to 29 | Decent", "30 to 99 (superfast)", "100 to 299 (Superfast)", "More than 300 / Ultrafast"];
-        var colors = ["#287d8e", "#1f968b", "#55c667",  "#95d840", "#dce319"];
+        var layers = ["Less than 10 - Not decent", "10 to 29 - Decent", "30 to 99 - Superfast*", "100 to 299 - Superfast", "More than 300 - Ultrafast"];
+        var colors = ["#651c91","#3c64b0", "#2dc28c", "#9aff36", "#f4ff2e"];
 
         for (i = 0; i < layers.length; i++) {
             var layer = layers[i];
