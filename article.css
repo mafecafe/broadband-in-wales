@@ -1,0 +1,63 @@
+
+:root {
+    /*Color palette*/
+    --dark:  #1A1A1A;
+    --light: #FFFFFF;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+body {
+    font-family: "Roboto", sans-serif;
+    color: var(--light) !important;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    background-color: var(--dark) !important;
+  }
+
+main {
+    margin: 0 15vw 0 15vw;
+}
+
+/*-----------NAV BAR-----------*/
+.logo-image img{
+ height: 3.5rem;
+ width: 6rem;
+}
+.navbar{
+   font-weight: 600;
+   letter-spacing: .1rem;
+   box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .1);
+   z-index: 1;
+}
+
+.nav-item{
+  padding: .5rem;
+}
+
+.nav-link{
+  color: #5b5555!important;
+}
+.nav-link:hover {
+  color: #32CD32!important
+}
+
+.error {
+    color: red
+}
+
+.message {
+    color: #32CD32
+}
+ .navbar-light .navbar-brand{
+   color: #616971;
+ }
+
+ .navbar-light .navbar-brand:hover{
+   color: #FFC0CB!important
+ }
