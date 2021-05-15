@@ -38,12 +38,6 @@ main {
 
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .rowcontainer {
-    clip: auto;
-    -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
-  }
-}
 /*-- Bootstrap Mobile Gutter Fix --*/
 .row, .container-fluid {
   margin-left: 0% !important;
@@ -160,4 +154,11 @@ h2.section-title {
 /*--------Fixed Header-------*/
 .card-body{
   color: var(--dark) !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .fixed-wrap {
+    clip: auto;
+    -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
+  }
 }
