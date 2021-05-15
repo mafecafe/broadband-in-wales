@@ -6,9 +6,10 @@ body {
 h2 {
   margin: 10px 10px 20px 10px;
   font-family: "Roboto", sans-serif;
-  font-size: 1.5em;
+  font-size: 1.6em;
   line-height: normal;
   color: #FFFFFF;
+  font-weight: 400;
 }
 
 h3 {
@@ -35,6 +36,23 @@ p {
   width: 100%;
 }
 
+.speedInfo {
+  position: relative;
+  margin: 20px 10px 20px 10px;
+  font-family: "Roboto", sans-serif;
+  color: #FFFFFF;
+  line-height: normal;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+#speed {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  margin: 0;
+}
+
 .map-overlay {
   position: absolute;
   bottom: 0;
@@ -42,7 +60,6 @@ p {
   /*background: rgba(255, 255, 255, 0.8);*/
   background: #1A1A1A;
   overflow: auto;
-  border-radius: 3px;
 }
 
 #features {
@@ -62,14 +79,16 @@ p {
   width: 20vw;
 }
 
+/*Colored squares from the legend*/
 .legend-key {
   display: inline-block;
-  border-radius: 20%;
+  border-radius: 0%;
   width: 10px;
   height: 10px;
   margin-right: 5px; /*From color to text*/
 }
 
+/*Targets the text elements of the legend*/
 span  {
   font-family: "Roboto", sans-serif;
   font-size: 0.85rem;
@@ -80,6 +99,12 @@ span  {
 
 span.mapboxgl-ctrl-icon {
   margin: 0px;
+}
+
+/*Targets the text of the searchbar*/
+.mapboxgl-ctrl-geocoder--input {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.85rem;
 }
 
 #legend-note {
@@ -96,6 +121,7 @@ span.mapboxgl-ctrl-icon {
 }
 
 #legend-note > p {
+  bottom: 0;
   text-overflow: wrap;
   font-style: italic;
   line-height: 120%;
