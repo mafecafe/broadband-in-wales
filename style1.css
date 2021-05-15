@@ -2,7 +2,7 @@
 
 :root {
     /*Color palette*/
-    --dark:  #1A1A1A;
+    --dark:  #1A1A1A !important;
     --light: #FFFFFF;
 
 }
@@ -33,6 +33,18 @@ header {
     position: relative;
     overflow:hidden;
 }
+
+/*============= MEDIA QUERIES =============*/
+
+/* Devices under 1199px (xl) */
+@media (max-width: 1199.98px) {
+
+}
+/* Devices under 768px (md) */
+@media (max-width: 767.98px) {
+
+}
+
 
 /*-----------SITE HEADER-----------*/
 
