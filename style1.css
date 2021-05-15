@@ -145,7 +145,7 @@ h2.section-title {
 .fixed-background {
   position: relative;
   width: 100%;
-  z-index: -999!important;
+  z-index: -999;
 }
 .fixed-wrap {
   clip: rect(0, auto, auto, 0);
