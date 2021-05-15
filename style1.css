@@ -19,6 +19,7 @@ body {
     font-size: 0.9rem;
     line-height: 1.2rem;
     background-color: var(--dark) !important;
+    overflow-x: hidden;
   }
 
 main {
@@ -145,7 +146,7 @@ h2.section-title {
 .fixed-background {
   position: relative;
   width: 100%;
-  z-index: -999;
+  z-index: -999!important;
 }
 .fixed-wrap {
   clip: rect(0, auto, auto, 0);
