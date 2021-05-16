@@ -96,13 +96,13 @@ main {
  }
 
  .fixed-background{
-   padding: 10rem 0;
+   padding: 7% 0;
  }
 
  .heading{
    font-size: 5rem;
-   padding-left: 14rem;
-   padding-right: 14rem;
+   padding-left: 5%;
+   padding-right: 5%;
    color: var(--light);
  }
 
