@@ -164,3 +164,25 @@ h2.section-title {
     -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
   }
 }
+
+/*--------Footer-------*/
+footer {
+  padding: 2% 0;
+  background-color: #404040;
+  margin-top: 2%;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  font-size: 1.2rem!important;
+}
+
+.footer-text{
+  color: #FFFFFF;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-decoration: none;
+}
+
+.footer-text:hover {
+  color: #32CD32!important;
+  text-decoration: none;
+}
