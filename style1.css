@@ -2,7 +2,7 @@
 
 :root {
     /*Color palette*/
-    --dark:  #1A1A1A;
+    --dark:  #1A1A1A !important;
     --light: #FFFFFF;
 
 }
@@ -19,21 +19,31 @@ body {
     font-size: 0.9rem;
     line-height: 1.2rem;
     background-color: var(--dark) !important;
+    overflow-x: hidden;
   }
 
 main {
-    margin: 0 15vw 0 15vw;
+    margin: 0% 15% 0% 15%;
+    z-index: 1000!important;
 }
 
-header {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow:hidden;
+
+/*============= MEDIA QUERIES =============*/
+
+/* Devices under 1199px (xl) */
+@media (max-width: 1199.98px) {
+
+}
+/* Devices under 768px (md) */
+@media (max-width: 767.98px) {
+
 }
 
+/*-- Bootstrap Mobile Gutter Fix --*/
+.row, .container-fluid {
+  margin-left: 0% !important;
+  margin-right: 0% !important;
+}
 /*-----------SITE HEADER-----------*/
 
 .street {
@@ -88,7 +98,7 @@ h2.section-title {
     margin: auto;
     width: 100%;
     height: 750px;
-    padding: 1.5rem 0 0.5rem 0;
+    padding: 1% 0 0.5% 0;
 }
 
 .source {
@@ -98,48 +108,17 @@ h2.section-title {
     font-weight: 400;
 }
 
-/*-----------SECTION 2: ARTICLES-----------*/
-
-.art-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px 0px 20px 0px;
-    text-align: center;
-    height: 60vh;
-}
-
-.article-1 {
-    flex: 1;
-    border: 2px solid yellow;
-}
-
-.article-2 {
-    flex: 1;
-    border: 2px solid red;
-}
-
-.article-3 {
-    flex: 1;
-    border: 2px solid yellowgreen;
-}
-
-.article-4 {
-    flex: 1;
-    border: 2px solid purple;
-}
-
 /*--------Fixed Header-------*/
 .fixed-background {
   position: relative;
   width: 100%;
-  z-index: 1000!important;
+  z-index: -998!important;
 }
 .fixed-wrap {
   clip: rect(0, auto, auto, 0);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
   z-index: -999 !important;
@@ -147,8 +126,8 @@ h2.section-title {
 .fixed {
   z-index: -999!important;
   display: block;
-  top: 0;
-  left: 0;
+  top: 0%;
+  left: 0%;
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -160,20 +139,51 @@ h2.section-title {
 .fixed{
   background-image: url('img/street.jpg');
   position: fixed;
+  opacity: 0.5;
 }
 
 .fixed-background{
-  padding: 10rem 0;
+  padding: 7% 0;
 }
 
 .heading{
   font-size: 5rem;
-  padding-left: 14rem;
-  padding-right: 14rem;
+  padding-left: 5%;
+  padding-right: 5%;
   color: var(--light);
 }
 
 /*--------Fixed Header-------*/
 .card-body{
   color: var(--dark) !important;
+}
+
+/*--------Fix for Safari-------*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .fixed-wrap {
+    clip: auto;
+    -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
+  }
+}
+
+/*--------Footer-------*/
+footer {
+  padding: 2% 0;
+  background-color: #404040;
+  margin-top: 2%;
+  font-weight: 400;
+  letter-spacing: .1rem;
+  font-size: 1.2rem!important;
+}
+
+.footer-text{
+  color: #FFFFFF;
+  margin-left: 2%;
+  margin-right: 2%;
+  text-decoration: none;
+}
+
+.footer-text:hover {
+  color: #32CD32!important;
+  text-decoration: none;
 }
