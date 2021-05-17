@@ -20,7 +20,6 @@ body {
     line-height: 1.2rem;
     background-color: var(--dark) !important;
     overflow-x: hidden;
-    cursor: pointer;
   }
 
 main {
