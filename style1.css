@@ -39,6 +39,15 @@ main {
 
 }
 
+@media (max-width: 480px){
+  .mapp{
+    padding: 0%!important;
+    margin: 0%!important;
+    overflow-x: hidden;
+  }
+}
+
+
 /*-- Bootstrap Mobile Gutter Fix --*/
 .row, .container-fluid {
   margin-left: 0% !important;
@@ -184,6 +193,6 @@ footer {
 }
 
 .footer-text:hover {
-  color: #32CD32!important;
+  color: ##2dc28c!important;
   text-decoration: none;
 }
