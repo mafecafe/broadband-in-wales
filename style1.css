@@ -40,10 +40,22 @@ main {
 }
 
 @media (max-width: 480px){
-  .mapp{
-    padding: 0%!important;
-    margin: 0%!important;
+  main{
+    margin: 0;
     overflow-x: hidden;
+  }
+  .section-1{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  .section-2{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .card-deck{
+    margin-left: 15%;
+    margin-right: 15%;
   }
 }
 
