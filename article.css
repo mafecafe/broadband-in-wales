@@ -176,3 +176,7 @@ footer {
   color: #2DC28C!important;
   text-decoration: none;
 }
+
+.flourish-embed .flourish-chart{
+  margin-right: 60%;
+}
