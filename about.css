@@ -108,88 +108,63 @@ main {
    color: var(--light);
  }
 
- /*--------Fixed Header-------*/
- .card-body{
-   color: var(--dark) !important;
+ /* Devices under 1199px (xl) */
+ @media (max-width: 1199.98px) {
+
+ }
+ /* Devices under 768px (md) */
+ @media (max-width: 767.98px) {
+
  }
 
-/*---------Text---------*/
-.container-fluid{
-  margin-top: 3%;
+ /*-- Bootstrap Mobile Gutter Fix --*/
+ .row, .container-fluid {
+   margin-left: 0% !important;
+   margin-right: 0% !important;
+ }
+
+ /*--------Fix for Safari-------*/
+ @media screen and (-webkit-min-device-pixel-ratio:0) {
+   .fixed-wrap {
+     clip: auto;
+     -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
+   }
+ }
+
+ /*--------Footer-------*/
+ footer {
+   padding: 2% 0;
+   background-color: #404040;
+   margin-top: 2%;
+   font-weight: 400;
+   letter-spacing: .1rem;
+   font-size: 1.2rem!important;
+ }
+
+ .footer-text{
+   color: #FFFFFF!important;
+   margin-left: 2%;
+   margin-right: 2%;
+   text-decoration: none;
+ }
+
+ .footer-text:hover {
+   color: #2DC28C!important;
+   text-decoration: none;
+ }
+
+
+.card{
+  margin-top: 20%!important;
+  margin-bottom: 20%!important;
+  margin-left: 10%!important;
+  margin-right: 10%!important;
 }
 
-li{
-  margin-left: 3%;
+.card-text{
+  color: var(--dark);
 }
 
-a{
-  color:#2DC28C !important;
-}
-
-h3{
-  margin-top: 4% !important;
-}
-
-
-/*============= MEDIA QUERIES =============*/
-
-/* Devices under 1199px (xl) */
-@media (max-width: 1199.98px) {
-
-}
-/* Devices under 768px (md) */
-@media (max-width: 767.98px) {
-
-}
-
-/*-- Bootstrap Mobile Gutter Fix --*/
-.row, .container-fluid {
-  margin-left: 0% !important;
-  margin-right: 0% !important;
-}
-
-/*--------Fix for Safari-------*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .fixed-wrap {
-    clip: auto;
-    -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
-  }
-}
-
-/*--------Footer-------*/
-footer {
-  padding: 2% 0;
-  background-color: #404040;
-  margin-top: 2%;
-  font-weight: 400;
-  letter-spacing: .1rem;
-  font-size: 1.2rem!important;
-}
-
-.footer-text{
-  color: #FFFFFF!important;
-  margin-left: 2%;
-  margin-right: 2%;
-  text-decoration: none;
-}
-
-.footer-text:hover {
-  color: #2DC28C!important;
-  text-decoration: none;
-}
-
-.flourish-embed .flourish-chart{
-  margin-right: 60%;
-}
-
-.histogram {
-    width: 100%;
-}
-
-.para {
-  margin-top: 3%!important;
-}
-
-img{
-  width: 100%;
+.card-title{
+  color: var(--dark);
 }

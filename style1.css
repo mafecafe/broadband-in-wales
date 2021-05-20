@@ -39,6 +39,27 @@ main {
 
 }
 
+@media (max-width: 480px){
+  main{
+    margin: 0;
+    overflow-x: hidden;
+  }
+  .section-1{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+
+  .section-2{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  .card-deck{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+}
+
+
 /*-- Bootstrap Mobile Gutter Fix --*/
 .row, .container-fluid {
   margin-left: 0% !important;
@@ -147,12 +168,15 @@ h2.section-title {
 }
 
 .heading{
-  font-size: 5rem;
+  font-size: 4rem;
   padding-left: 5%;
   padding-right: 5%;
   color: var(--light);
 }
 
+.names{
+  font-size: 1.5rem;
+}
 /*--------Fixed Header-------*/
 .card-body{
   color: var(--dark) !important;
@@ -184,6 +208,6 @@ footer {
 }
 
 .footer-text:hover {
-  color: #32CD32!important;
+  color: ##2dc28c!important;
   text-decoration: none;
 }
