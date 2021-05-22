@@ -102,7 +102,7 @@ main {
  }
 
  .heading{
-   font-size: 5rem;
+   font-size: 4rem;
    padding-left: 5%;
    padding-right: 5%;
    color: var(--light);
@@ -195,4 +195,8 @@ footer {
 
 img{
   width: 100%;
+}
+
+.method{
+  margin-top: 2%;
 }
