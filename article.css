@@ -227,9 +227,13 @@ img{
 }
 
 .card{
-  background-color: #787878!important;
+  background-color: var(--dark)!important;
   margin-top: 2%;
   margin-bottom: 1%;
+}
+
+.border-success{
+  color: #2DC28C
 }
 
 .card-text{
