@@ -233,7 +233,7 @@ img{
 }
 
 .border-success{
-  color: #2DC28C
+  border-color: #2DC28C !important;
 }
 
 .card-text{
