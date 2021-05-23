@@ -118,7 +118,11 @@ main {
 }
 
 .technical{
-  background-image: url('img/cabinet-2.jpg');
+  background-image: url('img/cabinet.jpg');
+}
+
+.interviews{
+  background-image: url('img/bt.jpg');
 }
 /*---------Text---------*/
 .container-fluid{
@@ -170,7 +174,7 @@ h4{
 footer {
   padding: 2% 0;
   background-color: #404040;
-  margin-top: 2%;
+  margin-top: 4%;
   font-weight: 400;
   letter-spacing: .1rem;
   font-size: 1.2rem!important;
@@ -216,4 +220,27 @@ img{
 
 .space{
   margin-top: 5%!important;
+}
+
+.card-text{
+  color: var(--light);
+}
+
+.card{
+  background-color: #787878!important;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.card-text{
+  font-style: italic;
+}
+
+.blockquote-footer{
+  font-style: italic;
+  color: var(--light)!important;
+}
+
+.card-title{
+  color: var(--light);
 }
