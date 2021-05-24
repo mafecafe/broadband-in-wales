@@ -27,15 +27,17 @@
     <div id="map"></div>
 
     <div class='map-overlay' id='legend'>
-        <h2>How fast is your internet connection?</h2>
+        <!-- <h2>How fast is your internet connection?</h2>
         <p>According to Ofcom's data, the <strong>average internet speed in Wales is 57.5 megabits per second</strong> (Mbps), which is classified as superfast broadband.</p>
         <p>However, <strong>64% of postcodes connected to broadband perform below average</strong>.</p>
         <p>Use the search bar to find out how fast your internet connection is.</p>
+        
+        <h3>Speed in megabits per second (Mbps)</h3> -->
         <div class="speedInfo">
             <div>Speed: <span id="speed"></span></div>
         </div>
-        <!-- <h3>Speed in megabits per second (Mbps)</h3> -->
     </div>
+    
 
     <script>
     // Access token
@@ -69,7 +71,7 @@
         accessToken: mapboxgl.accessToken, // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
         marker: false, // Remove preset marker style
-        placeholder: "Search a postcode in Wales", 
+        placeholder: "Enter a postcode", 
         // Limit the search to Wales -- PCDS outside this area are not shown 
         bbox: [-6.2461429537337905, 51.22659844375781, -3.0746473579867093, 53.45360364492393], 
         // proximity: {
@@ -77,13 +79,14 @@
         //     latitude: 52.45045504465645
         // } // Same as center position of map
     });
-    map.addControl(geocoder, "top-right");
+    map.addControl(geocoder, "top-left");
 
     // --------------------------- Retrieve the data ---------------------------- //
     geocoder.on("result", function(data) { // When the geocoder returns a result
         var point = data.result.center; // Capture the result coordinates
         //var tileset = "mafecafe.bwehql9r"; // OLD tileset
-        var tileset = "mafecafe.29vemwa9"; // tileset ID
+        //var tileset = "mafecafe.29vemwa9"; // tileset ID
+        var tileset = "mafecafe.dwos7e1r"; // CURRENT ID 20/05
         var limit = 1; // Display only one result
         var radius = 10; // meters
         // Using JQuery
@@ -138,9 +141,17 @@
 
         // New tileset: from broadband-wales-simplified.csv
         // Headers with no spaces
+        // map.addSource("broadbandInWales", {
+        //     type: "vector",
+        //     url: "mapbox://mafecafe.29vemwa9"
+        // });
+        // ------------------------------------------------------------------------------
+
+        // New tileset: from simpl_broadband_wales_2020.csv updated 20/05
+        // Headers with no spaces
         map.addSource("broadbandInWales", {
             type: "vector",
-            url: "mapbox://mafecafe.29vemwa9"
+            url: "mapbox://mafecafe.dwos7e1r"
         });
 
         // Data driven circles layer
@@ -150,7 +161,8 @@
                 type: "circle",
                 source: "broadbandInWales",
                 //"source-layer": "simplified_broadband_performa-c4hol7", //dataset
-                "source-layer": "broadband-wales-simplified-cxzndd",
+                //"source-layer": "broadband-wales-simplified-cxzndd",
+                "source-layer": "simpl_broadband_wales_2020-3atlzd", // 20/05
                 paint: {
                     // Circles with different data-driven sizes
                     //  "circle-radius": [

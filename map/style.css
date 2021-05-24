@@ -36,9 +36,20 @@ p {
   width: 100%;
 }
 
+/* Container of the sidebar */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /*background: rgba(255, 255, 255, 0.8);*/
+  background: #1A1A1A;
+  overflow: auto;
+}
+
+/* Return the speed of the postcode searched*/
 .speedInfo {
   position: relative;
-  margin: 20px 10px 20px 10px;
+  margin: 40px 10px 20px 0px;
   font-family: "Roboto", sans-serif;
   color: #FFFFFF;
   line-height: normal;
@@ -53,30 +64,21 @@ p {
   margin: 0;
 }
 
-.map-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  /*background: rgba(255, 255, 255, 0.8);*/
-  background: #1A1A1A;
-  overflow: auto;
-}
-
 #features {
   top: 0;
   height: 100px;
   margin-top: 20px;
-  margin-left: 25px;
-  width: 210px;
+  margin-left: 5px;
+  width: 220px;
 }
 
 #legend {
   top: 0;
-  padding: 20px;
+  padding: 18px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   /* line-height: 18px; */
-  height: 85vh;
-  width: 20vw;
+  height: 175px;
+  width: 225px;
 }
 
 /*Colored squares from the legend*/
@@ -94,17 +96,28 @@ span  {
   font-size: 0.85rem;
   line-height: 0.9rem;
   color: #FFFFFF;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 span.mapboxgl-ctrl-icon {
   margin: 0px;
 }
 
+#map > div.mapboxgl-control-container > div.mapboxgl-ctrl-top-left > div {
+  width: 100px;
+}
+
+/* Select the icon for the search*/
+#map > div.mapboxgl-control-container > div.mapboxgl-ctrl-top-left > div > svg {
+  margin-left: 200px;
+}
+
 /*Targets the text of the searchbar*/
 .mapboxgl-ctrl-geocoder--input {
   font-family: "Roboto", sans-serif;
-  font-size: 0.85rem;
+  font-size: 1rem;
+  padding-left: 10px;
+  font-weight: 400;
 }
 
 #legend-note {

@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    margin: 10px 10px 20px 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.6em;
+    line-height: normal;
+    color: #FFFFFF;
+    font-weight: 400;
+  }
+  
+  h3 {
+    margin: 20px 10px 10px 10px;
+    font-family: "Roboto", sans-serif;
+    color: #FFFFFF;
+    line-height: normal;
+    font-size: 1.1em;
+    font-weight: 300;
+  }
+  
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.85em;
+    margin: 10px;
+    text-align: left;
+    color: #FFFFFF;
+  }
+  
+  #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /*background: rgba(255, 255, 255, 0.8);*/
+    background: #1A1A1A;
+    overflow: auto;
+  }
+
+  /* Full div containing the sidebar */
+  #legend {
+    top: 0;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* line-height: 18px; */
+    height: 85vh;
+    width: 20vw;
+  }
+
+  /* Speed div - title*/
+  .speedInfo {
+    position: relative;
+    margin: 20px 10px 20px 10px;
+    font-family: "Roboto", sans-serif;
+    color: #FFFFFF;
+    line-height: normal;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  
+  /* Rendered speed */
+  #speed {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    margin: 0;
+  }
+  
+  #features {
+    top: 0;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 210px;
+  }
+  
+  /*Colored squares from the legend*/
+  .legend-key {
+    display: inline-block;
+    border-radius: 0%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px; /*From color to text*/
+  }
+  
+  /*Targets the text elements of the legend*/
+  span  {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.85rem;
+    line-height: 0.9rem;
+    color: #FFFFFF;
+    margin-left: 10px;
+  }
+  
+  /*Targets the icon on the search bar*/
+  span.mapboxgl-ctrl-icon {
+    margin: 0px;
+  }
+  
+  /*Targets the text of the searchbar*/
+  .mapboxgl-ctrl-geocoder--input {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.85rem;
+  }
+  
+  #legend-note {
+    position: absolute;
+    bottom: 0;
+    z-index: 30;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* line-height: 18px; */
+    height: 15vh;
+    width: 20vw;
+    font-size: 0.85em;
+    overflow: auto;
+  }
+  
+  #legend-note > p {
+    bottom: 0;
+    text-overflow: wrap;
+    font-style: italic;
+    line-height: 120%;
+  }
