@@ -234,3 +234,8 @@ footer {
   max-width: 100%!important;
   max-height: 100%!important;
 }
+
+.ofcom{
+  font-size: 0.8rem!important;
+  margin-bottom: 0;
+}
