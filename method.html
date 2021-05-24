@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="stylesheet" href="article.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <!--Typefaces-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <script src="script.js"></script>
+  <title>This is why the internet in Wales is bad</title>
+</head>
+<nav class="sticky-top navbar bg-light navbar-light navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="logo-image">
+            <img src="img/logo.png" class="img-fluid">
+      </div>
+    </a>
+    <button class="navbar-toggler" type='button' data-toggle='collapse' data-target='#navbarResponse'>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponse">
+      <ul class='navbar-nav ml-auto'>
+        <li class='nav-item'><a href='index.html'class='nav-link'>Home</a></li>
+        <li class='nav-item'><a href='interviews.html' class='nav-link'>Interviews</a></li>
+        <li class='nav-item'><a href='technical.html' class='nav-link'>Technical</a></li>
+        <li class='nav-item'><a href='analysis.html' class='nav-link'>Analysis</a></li>
+        <li class='nav-item'><a href='future.html' class='nav-link'>Help</a></li>
+    </div>
+
+</nav>
+<body>
+  <div class="container-fluid">
+      <div class="col-md-8 offset-md-2">
+        <h2>Methodology</h2>
+        <h4 class='method'>How we got our data</h4>
+        <p>This investigation uses fixed broadband performance postcode unit data published by Ofcom’s <a href='https://www.google.com/url?q=https://www.ofcom.org.uk/research-and-data/multi-sector-research/infrastructure-research/connected-nations-2020/data-downloads&sa=D&source=editors&ust=1621702818033000&usg=AOvVaw3VY9SQWu1VgVTMl-sXClno'>Connected Nations Report</a>
+        published in December 2020 and the <a href="https://geoportal.statistics.gov.uk/datasets/national-statistics-postcode-lookup-february-2020">Feburary 2020 Postcode Lookup data</a> by the Office of National Statistics.</p>
+        <p>Ofcom’s broadband performance dataset for Wales was created by concatenating the six datasets of each of the Welsh postcode areas into one. This resulted in an initial data frame of 60,292 rows by 33 columns.</p>
+        <p>The ONS dataseT contained data for all of the UK. We filtered that dataset to keep only the records where the first two characters of the postcodes matched either of the six postcodes areas of Wales. This resulted in an initial dataset of 145,972 rows by 50 columns.</p>
+        <p>Then we filtered out the terminated postcodes from the ONS dataset. Postcodes are terminated due to demolition of the buildings in that postcode or to relocation. In the dataset there’s a column where terminated postcodes have a numeric value representing the date of termination. If the value is null then the postcode is live. After filtering by this condition, the resulting dataset contained 96,697 live postcodes in the six Welsh postcode areas.</p>
+        <p>Then, the two datasets were merged by the column where postcodes were formatted with a space. The ONS establishes a minimum of 7 characters per postcode including spaces, but some postcodes on Ofcom’s dataset were only six characters long, creating a discrepancy between the two datasets.</p>
+        <p>We did two merges, one where the result was all the postcodes that were common to both the Ofcom and the ONS dataset, called an inner join. We also ran an outer join, which takes all the data from both datasets regardless of whether it matches. The inner join contains all the information about connected postcodes, whereas the outer join allows us to compare postcodes that are connected and not.</p>
+        <p>After merging the two sets, we needed to filter out the postcodes that are actually located in England. Split between the areas of Shrewbury and Llandrindodd there are 9,935 postcodes that are part of an “E” local authority or County, rather than a “W” one. In order to guarantee that our analysis covered only Wales, we decided to filter out all the records that matched this condition from both datasets. As a result, the dataset with Welsh Ofcom data was 54,792 rows, and the larger one with all the postcodes in Wales, was 86,765.</p>
+        <h4 class='method'>How we built the map </h4>
+        <p>Every dot on the map represents a connected postcode according to the Ofcom dataset. They are coloured according to their speed: the slower the broadband, the darker the dot.</p>
+        <p>Speeds were divided into five buckets and coloured accordingly as follows:</p>
+        <ul>
+          <li>Bucket one: connections that are less than 10 Mbps.</li>
+          <li>Bucket two: connections that are between 10 and 29 Mbps.</li>
+          <li>Bucket three: connections that are between 30 and 99 Mbps.</li>
+          <li>Bucket four: connections that are between 100 and 299 Mbps.</li>
+          <li>Bucket five: connections that are 300 Mbps or faster.</li>
+        </ul>
+        <p>These breaks represent Ofcom’s classification of broadband speed categories. It is worth noting that Ofcom sets the threshold for superfast broadband at a minimum of 30 Mbps, whereas the government says it’s 24 Mbps. For the map we used Ofcom’s reference.</p>
+        <h4 class='method'>Sources:</h4>
+        <ul>
+          <li>Ofcom’s Connected Nations Report for Wales 2020</li>
+          <li>Ofcom’s Connected Nations Report for the UK 2020</li>
+          <li>Ofcom’s Communications Infrastructure Report 2011</li>
+          <li>Evaluation of Next Generation  Broadband Wales Programme 2015-18: Final report</li>
+          <li>A Digital Agenda for Europe (Communication from the Commission to the European Parliament, the Council, the European Economic and Social Committee and the Committee of the Regions)</li>
+          <li>European Structural Funding Programmes 2014-2020 (Welsh European Funding Office)</li>
+          <li>Digital Communications Infrastructure in Wales: 2020 Report and recommendations of the National Infrastructure Commission for Wales</li>
+          <li>West Wales & The Valleys European Structural Funds 2014-2020 (European Regional Development Fund)</li>
+          <li>Conclusions of the European Council on 17 June 2020 (adoption of the Digital Agenda for Europe)</li>
+          <li>House of Commons Notes on the availability of broadband in the UK in 2009</li>
+          <li>House of Commons Briefing Paper published on March 4 2021, on Superfast broadband in the UK</li>
+          <li>“Written Evidence to the Economy, Infrastructure and Skills Committee Digital </li>
+          <li>Infrastructure Inquiry” by the Welsh government</li>
+        </ul>
+        <h4 class="method">Data Sources:</h4>
+        <ul>
+          <li>Ofcom’s 2020 fixed performance postcode unit data (zip file with all the postcode areas in a csv)</li>
+          <li>ONS Postcode Directory (ONSPD) dataset February 2020 (CSV)</li>
+          <li>ONS Postcode Directory (ONSPD) User Guide</li>
+          <li>European Structural Funds allocated to Wales 2014-2020 (Excel)</li>
+          <li>World Population Review 2020 world broadband speed performance (obtained from Speedtest</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+<script src="js/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap 4.5 JS -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Popper JS -->
+<script src="js/popper.min.js"></script>
+<!-- Font Awesome -->
+<script src="js/all.min.js"></script>
+<!-- mdb -->
+<script src="js/mdb.min.js"></script>
+
+<footer class="text-center text-lg-start">
+    <a class="footer-text" href="about.html">About</a>
+      <a class="footer-text" href="method.html">Methodology</a>
+</footer>
+
+</html>

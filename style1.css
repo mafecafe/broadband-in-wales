@@ -118,7 +118,7 @@ h2.section-title {
     display: block;
     margin: auto;
     width: 100%;
-    height: 750px;
+    height: 650px;
     padding: 1% 0 0.5% 0;
 }
 
@@ -158,7 +158,7 @@ h2.section-title {
   will-change: transform;
 }
 .fixed{
-  background-image: url('img/street.jpg');
+  background-image: url('img/cabinet-2.jpg');
   position: fixed;
   opacity: 0.5;
 }
@@ -180,6 +180,7 @@ h2.section-title {
 /*--------Fixed Header-------*/
 .card-body{
   color: var(--dark) !important;
+  max-height: 18%!important;
 }
 
 /*--------Fix for Safari-------*/
@@ -194,7 +195,7 @@ h2.section-title {
 footer {
   padding: 2% 0;
   background-color: #404040;
-  margin-top: 2%;
+  margin-top: 4%;
   font-weight: 400;
   letter-spacing: .1rem;
   font-size: 1.2rem!important;
@@ -208,6 +209,28 @@ footer {
 }
 
 .footer-text:hover {
-  color: ##2dc28c!important;
+  color: #2DC28C!important;
   text-decoration: none;
+}
+
+.para {
+  margin-top: 3%!important;
+}
+
+
+.btn-outline-success {
+  color: #2DC28C!important;
+  border-color: #2DC28C!important;
+}
+
+.btn-outline-success:hover {
+    background-color: #2DC28C!important;
+    color:white!important;
+}
+
+
+
+.read{
+  max-width: 100%!important;
+  max-height: 100%!important;
 }

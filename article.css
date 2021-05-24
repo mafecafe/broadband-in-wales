@@ -102,7 +102,7 @@ main {
  }
 
  .heading{
-   font-size: 5rem;
+   font-size: 4rem;
    padding-left: 5%;
    padding-right: 5%;
    color: var(--light);
@@ -113,6 +113,17 @@ main {
    color: var(--dark) !important;
  }
 
+.analysis{
+  background-image: url('img/Green.jpeg');
+}
+
+.technical{
+  background-image: url('img/cabinet.jpg');
+}
+
+.interviews{
+  background-image: url('img/bt.jpg');
+}
 /*---------Text---------*/
 .container-fluid{
   margin-top: 3%;
@@ -130,6 +141,9 @@ h3{
   margin-top: 4% !important;
 }
 
+h4{
+  margin-top: 3%!important;
+}
 
 /*============= MEDIA QUERIES =============*/
 
@@ -160,7 +174,7 @@ h3{
 footer {
   padding: 2% 0;
   background-color: #404040;
-  margin-top: 2%;
+  margin-top: 4%;
   font-weight: 400;
   letter-spacing: .1rem;
   font-size: 1.2rem!important;
@@ -192,4 +206,45 @@ footer {
 
 img{
   width: 100%;
+}
+
+.method{
+  margin-top: 2%;
+}
+
+.names{
+  font-size: 1.5rem;
+  margin-top: 1% !important;
+}
+
+
+.space{
+  margin-top: 5%!important;
+}
+
+.card-text{
+  color: var(--light);
+}
+
+.card{
+  background-color: var(--dark)!important;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.border-success{
+  border-color: #2DC28C !important;
+}
+
+.card-text{
+  font-style: italic;
+}
+
+.blockquote-footer{
+  font-style: italic;
+  color: var(--light)!important;
+}
+
+.card-title{
+  color: var(--light);
 }
