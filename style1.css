@@ -180,6 +180,7 @@ h2.section-title {
 /*--------Fixed Header-------*/
 .card-body{
   color: var(--dark) !important;
+  max-height: 18%!important;
 }
 
 /*--------Fix for Safari-------*/
@@ -226,6 +227,8 @@ footer {
     background-color: #2DC28C!important;
     color:white!important;
 }
+
+
 
 .read{
   max-width: 100%!important;
