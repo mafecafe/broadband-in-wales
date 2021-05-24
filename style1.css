@@ -239,3 +239,14 @@ footer {
   font-size: 0.8rem!important;
   margin-bottom: 0;
 }
+
+
+.link{
+  color:#2DC28C !important;
+}
+
+
+a:hover {
+  color: #2DC28C!important;
+  text-decoration: none;
+}
