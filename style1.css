@@ -168,14 +168,20 @@ h2.section-title {
 }
 
 .heading{
-  font-size: 4rem;
+  font-size: 4.5rem;
   padding-left: 5%;
   padding-right: 5%;
   color: var(--light);
 }
 
 .names{
-  font-size: 1.5rem;
+  margin-top: 1.5%;
+  font-size: 1.3rem;
+}
+
+.subhead{
+  font-size: 1.8rem;
+  margin-top: 1%;
 }
 /*--------Fixed Header-------*/
 .card-body{

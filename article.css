@@ -142,7 +142,7 @@ h3{
 }
 
 h4{
-  margin-top: 3%!important;
+  margin-top: 2.5%!important;
 }
 
 /*============= MEDIA QUERIES =============*/
@@ -215,6 +215,8 @@ img{
 .names{
   font-size: 1.5rem;
   margin-top: 1% !important;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 
